@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>to do list</title>
+</head>
+<body>
+    <div class="container"> 
+        <div class="to-do-list" id="app" v-cloak>
+            <div class="title"><h1>{{ title }}</h1></div>
+            <div class="search-field">
+                <div class="field">
+                    <input type="text" 
+                    v-bind:placeholder="placeholderText" 
+                    v-model="inputValue"
+                    v-on:keypress="enterPress"
+                    />
+                </div>
+                <button class="btn" v-on:click="addNewTask">Добавить</button>
+            </div>
+                <ul class="task-list" v-if="notes.length !== 0">
+                    <li class="task_item" v-for="(note, idx) in notes">
+                        {{ note }}
+                        <button class="delete-btn" v-on:click="deleteTask(idx)">Удалить</button>
+                    </li>
+                </ul>
+                <div v-else class="empty-div">Заметок пока нет. Добавьте первую</div>    
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
